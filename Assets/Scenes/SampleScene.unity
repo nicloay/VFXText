@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 330585545}
   - component: {fileID: 330585544}
   - component: {fileID: 330585547}
+  - component: {fileID: 330585548}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -181,7 +182,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 10
   far clip plane: 1000
   field of view: 79.9
   orthographic: 1
@@ -260,6 +261,18 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
+--- !u!114 &330585548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330585543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30b9b8e3bd37444885bf2497c2d83db9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -387,9 +400,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 422616528}
-  - component: {fileID: 422616527}
   - component: {fileID: 422616526}
-  - component: {fileID: 422616525}
+  - component: {fileID: 422616527}
+  - component: {fileID: 422616530}
+  - component: {fileID: 422616529}
   m_Layer: 0
   m_Name: TextVFX
   m_TagString: Untagged
@@ -397,19 +411,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &422616525
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 422616524}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8d3ae63b3031664d9633c5b76ef9bdb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fontAsset: {fileID: 12800000, guid: ea9f5d643405eaa4b8207636e07eb68e, type: 3}
 --- !u!73398921 &422616526
 VFXRenderer:
   serializedVersion: 1
@@ -506,6 +507,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &422616529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 422616524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1d5eaeeba984dc39c0e5dde146e592d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _textAsset: {fileID: 4900000, guid: f3e5fcf494024cc083051e0a74a53d45, type: 3}
+--- !u!114 &422616530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 422616524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bea46f75dab148245b6d7e4e060e0a23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fontAsset: {fileID: 12800000, guid: ea9f5d643405eaa4b8207636e07eb68e, type: 3}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0

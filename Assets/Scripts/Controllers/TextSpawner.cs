@@ -21,14 +21,22 @@ namespace DefaultNamespace.Controllers
 
         private void Update()
         {
-            if (currentWord >= words.Length)
-            {
-                currentWord = 0;
-            }
+            // if (Time.frameCount % 200 != 0)
+            // {
+            //     return;
+            // }
 
-            var positionX = Random.Range(0, Screen.width);
-            var positionY = Random.Range(0, Screen.height);
-            _particleController.SpawnWord(new Vector2(positionX, positionY), words[currentWord++]);
+
+            for (int i = 0; i < 10; i++)
+            {
+                if (currentWord >= words.Length)
+                {
+                    currentWord = 0;
+                }
+                var positionX = Random.Range(0, Screen.width);
+                var positionY = Random.Range(0, Screen.height);
+                _particleController.SpawnWord(new Vector2(positionX, positionY), words[currentWord++]);
+            }
         }
     }
 }
