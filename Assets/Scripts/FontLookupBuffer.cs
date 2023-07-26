@@ -20,20 +20,20 @@ namespace DefaultNamespace
             {
                 return new FontLookupBuffer()
                 {
-                    Size = new Vector2(characterInfo.glyphHeight, characterInfo.glyphWidth),
-                    BottomLeft = new Vector2(uv.x, uv.y),
+                    Size = new Vector2(characterInfo.vert.width, characterInfo.vert.height),
+                    BottomLeft = new Vector2(uv.x + uv.width, uv.y),
                     BottomRight = new Vector2(0 , uv.height),
-                    TopLeft = new Vector2( uv.width, 0)
+                    TopLeft = new Vector2( -uv.width, 0)
                 };
             }
             else
             {
                 return new FontLookupBuffer()
                 {
-                    Size = new Vector2(characterInfo.glyphWidth, characterInfo.glyphHeight),
-                    BottomLeft = new Vector2(uv.x, uv.y),
+                    Size = new Vector2(characterInfo.vert.width, characterInfo.vert.height),
+                    BottomLeft = new Vector2(uv.x, uv.y+uv.height),
                     BottomRight = new Vector2( uv.width, 0),
-                    TopLeft = new Vector2(0,  uv.height)
+                    TopLeft = new Vector2(0,  -uv.height)
                 };
             }
         }

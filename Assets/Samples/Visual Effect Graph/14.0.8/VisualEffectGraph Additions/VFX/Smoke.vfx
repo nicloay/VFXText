@@ -248,7 +248,7 @@ MonoBehaviour:
   - name: Velocity and Forces
     collapsed: 1
   - name: Color
-    collapsed: 1
+    collapsed: 0
   - name: Size And Angle
     collapsed: 1
   - name: Texture
@@ -4710,7 +4710,7 @@ MonoBehaviour:
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
   m_UIPosition: {x: 0, y: 0}
-  m_UICollapsed: 1
+  m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots: []
   m_OutputSlots:
