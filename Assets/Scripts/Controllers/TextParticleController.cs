@@ -1,3 +1,4 @@
+using System.Drawing;
 using System.Threading.Tasks;
 using DefaultNamespace;
 using UnityEngine;
@@ -6,8 +7,9 @@ using UnityEngine.VFX;
 public class TextParticleController : MonoBehaviour
 {
     [SerializeField] private Font fontAsset;
+    [SerializeField] private float DefaultScale = 0.1f;
     
-    private static readonly int TextBufferStride = (sizeof(float) * 2 + sizeof(int)); // 2float - position 1int-GlyphId
+    private static readonly int TextBufferStride = (sizeof(float) * 2 + sizeof(int) + sizeof(float)); // 2float - position 1int-GlyphId + 1float-Scale
     private static readonly int TextBufferSize = 100000; // 100k glyphs 
     
     private static readonly int TextBuffer = Shader.PropertyToID(nameof(TextBuffer));
@@ -33,9 +35,7 @@ public class TextParticleController : MonoBehaviour
         _vfx.SetGraphicsBuffer(TextBuffer, _textBuffer);
         _vfx.SetInt(TextBufferSizeName, TextBufferSize);
         
-        
-        _vfx.Play();
-        
+        _eventAttribute = _vfx.CreateVFXEventAttribute();
     }
 
     private void OnDestroy()
@@ -46,25 +46,29 @@ public class TextParticleController : MonoBehaviour
 
     public void SpawnWord(Vector2 screenPosition, string word)
     {
-        //word = "Hello World!";
-        var wordLength = word.Length;
+        SpawnWord(screenPosition, word, DefaultScale);
+    }
 
-        var array = GetGlyphArray(screenPosition, word); // fix this (get real word from input parameter!
+
+    public void SpawnWord(Vector2 screenPosition, string word, float scale)
+    {
+        var wordLength = word.Length;
         if ((_targetBufferPosition + wordLength) >= TextBufferSize)
         {
             _targetBufferPosition = 0;
+            Debug.Log("Reset Buffer");
         }
         
+        var array = GetGlyphArray(screenPosition, word, scale);
         _textBuffer.SetData(array, 0, _targetBufferPosition, wordLength);
         
-        var targetPosition = _targetBufferPosition; // TODO:  check if we still fit target array before setting the data
-        _targetBufferPosition += wordLength;
-        _eventAttribute = _vfx.CreateVFXEventAttribute();
-        _eventAttribute.SetInt(TextBufferStartPosition,  wordLength * TextBufferSize + targetPosition);
+        _eventAttribute.SetInt(TextBufferStartPosition,  _targetBufferPosition);
+        _eventAttribute.SetFloat("spawnCount", wordLength);
         _vfx.SendEvent(ShowText, _eventAttribute);
+        _targetBufferPosition += wordLength;
     }
-
-    private GlyphBufferInfo[] GetGlyphArray(Vector2 centerPosition, string str)
+    
+    private GlyphBufferInfo[] GetGlyphArray(Vector2 centerPosition, string str, float scale)
     {
         var result = new GlyphBufferInfo[str.Length];
         var totalWidth = 0f;
@@ -78,9 +82,10 @@ public class TextParticleController : MonoBehaviour
                 result[i] = new GlyphBufferInfo()
                 {
                     GlyphId = _fontAdapter.GetGlyphId(c),
-                    Offset = centerPosition + position +  characterInfo.vert.center
+                    Offset = centerPosition + position +  characterInfo.vert.center * scale,
+                    Scale = scale
                 };
-                position.x += characterInfo.advance;
+                position.x += characterInfo.advance * scale;
             }
             i++;
         }

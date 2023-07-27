@@ -15,18 +15,11 @@ namespace DefaultNamespace.Controllers
         private void Awake()
         {
             _particleController = GetComponent<TextParticleController>();
-            words = _textAsset.text.Split(' ');
-            
+            words = _textAsset.text.Split('\n');
         }
 
         private void Update()
         {
-            // if (Time.frameCount % 200 != 0)
-            // {
-            //     return;
-            // }
-
-
             for (int i = 0; i < 10; i++)
             {
                 if (currentWord >= words.Length)

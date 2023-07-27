@@ -404,6 +404,7 @@ GameObject:
   - component: {fileID: 422616527}
   - component: {fileID: 422616530}
   - component: {fileID: 422616529}
+  - component: {fileID: 422616531}
   m_Layer: 0
   m_Name: TextVFX
   m_TagString: Untagged
@@ -533,6 +534,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fontAsset: {fileID: 12800000, guid: ea9f5d643405eaa4b8207636e07eb68e, type: 3}
+  DefaultScale: 0.2
+--- !u!114 &422616531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 422616524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 956cfe80dbd3476aba910f036debc940, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
