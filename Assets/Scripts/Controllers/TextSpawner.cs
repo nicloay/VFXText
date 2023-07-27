@@ -8,6 +8,8 @@ namespace DefaultNamespace.Controllers
     public class TextSpawner : MonoBehaviour
     {
         [SerializeField] private TextAsset _textAsset;
+
+        [SerializeField] private float size = 0.5f;
         
         private TextParticleController _particleController;
         private string[] words;
@@ -28,7 +30,7 @@ namespace DefaultNamespace.Controllers
                 }
                 var positionX = Random.Range(0, Screen.width);
                 var positionY = Random.Range(0, Screen.height);
-                _particleController.SpawnWord(new Vector2(positionX, positionY), words[currentWord++]);
+                _particleController.SpawnWord(new Vector2(positionX, positionY), words[currentWord++], size);
             }
         }
     }

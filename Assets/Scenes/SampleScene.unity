@@ -405,6 +405,7 @@ GameObject:
   - component: {fileID: 422616530}
   - component: {fileID: 422616529}
   - component: {fileID: 422616531}
+  - component: {fileID: 422616532}
   m_Layer: 0
   m_Name: TextVFX
   m_TagString: Untagged
@@ -515,12 +516,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 422616524}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a1d5eaeeba984dc39c0e5dde146e592d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _textAsset: {fileID: 4900000, guid: f3e5fcf494024cc083051e0a74a53d45, type: 3}
+  size: 0.5
 --- !u!114 &422616530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -547,6 +549,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 956cfe80dbd3476aba910f036debc940, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &422616532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 422616524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26cae79db5184818a05c75253179fb52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 422616529}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0

@@ -17,8 +17,11 @@ namespace DefaultNamespace.Controllers
         {
             if (Input.GetMouseButton(0))
             {
-                var damage = Time.frameCount % 60 * 1000;
-                _particleController.SpawnWord(Input.mousePosition, damage.ToString());
+                for (int i = 0; i < 5; i++)
+                {
+                    var damage = Time.frameCount % 60 * 1000;
+                    _particleController.SpawnWord(Input.mousePosition, damage.ToString());
+                }
             }
         }
     }
