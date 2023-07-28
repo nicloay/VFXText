@@ -6,8 +6,10 @@ namespace DefaultNamespace.Controllers
     [RequireComponent(typeof(TextParticleController))]
     public class DamageBubbleOnMouseDownSpawner : MonoBehaviour
     {
+        [SerializeField] private Pivot pivot = Pivot.Bottom;
+        
         private TextParticleController _particleController;
-
+    
         private void Awake()
         {
             _particleController = GetComponent<TextParticleController>();
@@ -20,7 +22,7 @@ namespace DefaultNamespace.Controllers
                 for (int i = 0; i < 5; i++)
                 {
                     var damage = Time.frameCount % 60 * 1000;
-                    _particleController.SpawnWord(Input.mousePosition, damage.ToString());
+                    _particleController.SpawnWord(Input.mousePosition, damage.ToString(), pivot);
                 }
             }
         }

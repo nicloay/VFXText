@@ -1,4 +1,5 @@
 using System.Drawing;
+using System.Net.NetworkInformation;
 using System.Threading.Tasks;
 using DefaultNamespace;
 using UnityEngine;
@@ -44,13 +45,13 @@ public class TextParticleController : MonoBehaviour
         _textBuffer?.Dispose();
     }
 
-    public void SpawnWord(Vector2 screenPosition, string word)
+    public void SpawnWord(Vector2 screenPosition, string word, Pivot pivot = Pivot.Bottom)
     {
-        SpawnWord(screenPosition, word, DefaultScale);
+        SpawnWord(screenPosition, word, DefaultScale, pivot);
     }
 
 
-    public void SpawnWord(Vector2 screenPosition, string word, float scale)
+    public void SpawnWord(Vector2 screenPosition, string word, float scale, Pivot pivot)
     {
         var wordLength = word.Length;
         if ((_targetBufferPosition + wordLength) >= TextBufferSize)
@@ -59,7 +60,7 @@ public class TextParticleController : MonoBehaviour
             Debug.Log("Reset Buffer");
         }
         
-        var array = GetGlyphArray(screenPosition, word, scale);
+        var array = GetGlyphArray(screenPosition, word, scale, pivot);
         _textBuffer.SetData(array, 0, _targetBufferPosition, wordLength);
         
         _eventAttribute.SetInt(TextBufferStartPosition,  _targetBufferPosition);
@@ -68,13 +69,14 @@ public class TextParticleController : MonoBehaviour
         _targetBufferPosition += wordLength;
     }
     
-    private GlyphBufferInfo[] GetGlyphArray(Vector2 centerPosition, string str, float scale)
+    private GlyphBufferInfo[] GetGlyphArray(Vector2 centerPosition, string str, float scale, Pivot pivot)
     {
         var result = new GlyphBufferInfo[str.Length];
         var totalWidth = 0f;
         var i = 0;
         CharacterInfo characterInfo;
         var position  = Vector2.zero;
+        
         foreach (var c in str)
         {
             if (fontAsset.GetCharacterInfo(c, out characterInfo))
@@ -85,11 +87,21 @@ public class TextParticleController : MonoBehaviour
                     Offset = centerPosition + position +  characterInfo.vert.center * scale,
                     Scale = scale
                 };
-                position.x += characterInfo.advance * scale;
+                var advance = characterInfo.advance * scale;
+                position.x += advance;
+                totalWidth += advance;
             }
             i++;
         }
 
+        var height =  fontAsset.lineHeight * scale;
+
+        var (offsetX, offsetY) = pivot.GetOffset(totalWidth, height);
+        for (int j = 0; j < result.Length; j++)
+        {
+            result[j].Offset.x += offsetX;
+            result[j].Offset.y += offsetY;
+        }
         return result;
     }
 }
