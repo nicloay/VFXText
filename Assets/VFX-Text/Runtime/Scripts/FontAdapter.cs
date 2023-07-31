@@ -2,14 +2,14 @@ using System;
 using Unity.Collections;
 using UnityEngine;
 
-namespace DefaultNamespace
+namespace VFXText
 {
     public class FontAdapter : IDisposable
     {
-        private NativeArray<FontLookupBuffer> _lookupBuffers;
         public readonly GraphicsBuffer Buffer;
         public readonly int[] GlyphIdByChar;
-        
+        private NativeArray<FontLookupBuffer> _lookupBuffers;
+
         public FontAdapter(Font font)
         {
             GlyphIdByChar = new int[255];
@@ -21,23 +21,20 @@ namespace DefaultNamespace
                 GlyphIdByChar[characterInfo.index] = i;
             }
 
-            Buffer = new GraphicsBuffer(GraphicsBuffer.Target.Structured, font.characterInfo.Length, (sizeof(float) * 8));
+            Buffer = new GraphicsBuffer(GraphicsBuffer.Target.Structured, font.characterInfo.Length, sizeof(float) * 8);
             Buffer.SetData(_lookupBuffers);
+        }
+
+        public void Dispose()
+        {
+            _lookupBuffers.Dispose();
         }
 
         public int GetGlyphId(char c)
         {
-            if (c >= 255)
-            {
-                Debug.LogError($"character {c} is not supported");
-            }
+            if (c >= 255) Debug.LogError($"character {c} is not supported");
 
             return GlyphIdByChar[c];
-        }
-        
-        public void Dispose()
-        {
-            _lookupBuffers.Dispose();
         }
     }
 }

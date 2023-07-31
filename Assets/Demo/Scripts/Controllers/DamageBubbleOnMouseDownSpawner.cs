@@ -1,15 +1,14 @@
-using System;
 using UnityEngine;
 
-namespace DefaultNamespace.Controllers
+namespace VFXText.Demo
 {
     [RequireComponent(typeof(TextParticleController))]
     public class DamageBubbleOnMouseDownSpawner : MonoBehaviour
     {
         [SerializeField] private Pivot pivot = Pivot.Bottom;
-        
+
         private TextParticleController _particleController;
-    
+
         private void Awake()
         {
             _particleController = GetComponent<TextParticleController>();
@@ -18,13 +17,11 @@ namespace DefaultNamespace.Controllers
         private void Update()
         {
             if (Input.GetMouseButton(0))
-            {
-                for (int i = 0; i < 5; i++)
+                for (var i = 0; i < 5; i++)
                 {
                     var damage = Time.frameCount % 60 * 1000;
                     _particleController.SpawnWord(Input.mousePosition, damage.ToString(), pivot);
                 }
-            }
         }
     }
 }

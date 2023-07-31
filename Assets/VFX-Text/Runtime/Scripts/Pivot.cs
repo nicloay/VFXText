@@ -1,8 +1,6 @@
-using UnityEngine;
-
-namespace DefaultNamespace
+namespace VFXText
 {
-    public enum Pivot : int
+    public enum Pivot
     {
         BottomLeft = 0,
         Bottom,
@@ -10,14 +8,14 @@ namespace DefaultNamespace
         Left,
         Center,
         Right,
-        TopLeft, 
+        TopLeft,
         Top,
         TopRight
     }
 
     public static class PivotExtensions
     {
-        private static readonly float[] HorizontalOffsetMultiplier = new[]
+        private static readonly float[] HorizontalOffsetMultiplier =
         {
             -0f,
             -0.5f,
@@ -30,7 +28,7 @@ namespace DefaultNamespace
             -1f
         };
 
-        private static readonly float[] VerticalOffsetMultiplier = new[]
+        private static readonly float[] VerticalOffsetMultiplier =
         {
             -0f,
             -0f,

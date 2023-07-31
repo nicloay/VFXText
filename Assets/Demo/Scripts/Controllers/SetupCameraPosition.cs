@@ -1,7 +1,6 @@
-using System;
 using UnityEngine;
 
-namespace DefaultNamespace.Controllers
+namespace VFXText.Demo
 {
     [RequireComponent(typeof(Camera))]
     public class SetupCameraPosition : MonoBehaviour

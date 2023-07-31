@@ -1,7 +1,6 @@
-using System;
 using UnityEngine;
 
-namespace DefaultNamespace.Controllers
+namespace VFXText.Demo
 {
     public class TriggerComponentOnButtonPress : MonoBehaviour
     {
@@ -10,10 +9,7 @@ namespace DefaultNamespace.Controllers
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                target.enabled = !target.enabled;
-            }
+            if (Input.GetKeyDown(KeyCode.Space)) target.enabled = !target.enabled;
         }
     }
 }
