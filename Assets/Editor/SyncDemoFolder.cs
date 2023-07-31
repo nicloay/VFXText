@@ -4,7 +4,7 @@ using UnityEditor;
 public class SyncDemoFolder
 {
     const string SRC_FOLDER = @"Assets/Demo";
-    const string TARGET_FOLDER = @"Assets/VFX-Text/Samples~/Demo";
+    const string TARGET_FOLDER = @"Assets/VFXText/Samples~/Demo";
     
     [MenuItem("Window/SyncDemoFolder")]
     public static void SyncDemoFolderRecursively()
