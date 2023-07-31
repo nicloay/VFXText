@@ -12,11 +12,6 @@
   "keywords": [
     "VFX"
   ],
-  "author": {
-    "name": "Unity",
-    "email": "unity@example.com",
-    "url": "https://www.unity3d.com"
-  },
   "samples": [
     {
       "displayName": "Demo scene",
