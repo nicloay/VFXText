@@ -423,7 +423,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pivot: 4
-  particleNumber: 0.01
+  particleNumber: 2
   textScale: 0.5
 --- !u!114 &422616533
 MonoBehaviour:

@@ -49,13 +49,13 @@ namespace VFXText
             _textBuffer?.Dispose();
         }
 
-        public void SpawnWord(Vector2 screenPosition, string word, Pivot pivot = Pivot.Bottom)
+        public void SpawnWord(Vector3 screenPosition, string word, Pivot pivot = Pivot.Bottom)
         {
             SpawnWord(screenPosition, word, DefaultScale, pivot);
         }
 
 
-        public void SpawnWord(Vector2 screenPosition, string word, float scale, Pivot pivot, Action<VFXEventAttribute> customEventAttribute = null)
+        public void SpawnWord(Vector3 screenPosition, string word, float scale, Pivot pivot, Action<VFXEventAttribute> customEventAttribute = null)
         {
             var wordLength = word.Length;
             if (_targetBufferPosition + wordLength >= TextBufferSize)
