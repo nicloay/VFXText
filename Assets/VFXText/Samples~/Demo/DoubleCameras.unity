@@ -426,19 +426,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1360628167}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &70596987
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 70596986}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 956cfe80dbd3476aba910f036debc940, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pivot: 1
 --- !u!114 &70596988 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3613238033746015669, guid: 31af5a5c747f3c84b9ed8955f9e0fb45,
@@ -457,6 +444,20 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1360628167}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &70596994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 70596986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9a04d2902a372945aa7a84c75c57ba3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCamera: {fileID: 75958010}
+  overlayCamera: {fileID: 898296346}
 --- !u!1001 &71834389
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2168,7 +2169,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: -100
   far clip plane: 1000
   field of view: 60
   orthographic: 1
@@ -3790,6 +3791,12 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 898296347}
     m_Modifications:
+    - target: {fileID: 3500084840649049731, guid: 31af5a5c747f3c84b9ed8955f9e0fb45,
+        type: 3}
+      propertyPath: m_Asset
+      value: 
+      objectReference: {fileID: 8926484042661614526, guid: e34e2c73ec432ee4a8e9e04ce278d9c7,
+        type: 3}
     - target: {fileID: 6238981649330652234, guid: 31af5a5c747f3c84b9ed8955f9e0fb45,
         type: 3}
       propertyPath: m_RootOrder
@@ -3862,7 +3869,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7005437005341727367, guid: 31af5a5c747f3c84b9ed8955f9e0fb45,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 70596987}
+      addedObject: {fileID: 70596994}
   m_SourcePrefab: {fileID: 100100000, guid: 31af5a5c747f3c84b9ed8955f9e0fb45, type: 3}
 --- !u!1 &1386395228
 GameObject:

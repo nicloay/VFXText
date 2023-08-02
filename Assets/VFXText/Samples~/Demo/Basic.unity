@@ -409,7 +409,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26cae79db5184818a05c75253179fb52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  target: {fileID: 422616533}
 --- !u!114 &422616532
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -422,7 +422,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 956cfe80dbd3476aba910f036debc940, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pivot: 1
+  pivot: 4
+  particleNumber: 2
+  textScale: 0.5
 --- !u!114 &422616533
 MonoBehaviour:
   m_ObjectHideFlags: 0
