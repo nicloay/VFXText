@@ -4,7 +4,7 @@ using UnityEngine.VFX;
 namespace VFXText.Demo
 {
     [RequireComponent(typeof(VisualEffect))]
-    public class LinkOverlayCamera : MonoBehaviour
+    public class SyncDoubleCamerasMatrices : MonoBehaviour
     {
         [SerializeField] private Camera mainCamera;
         [SerializeField] private Camera overlayCamera;

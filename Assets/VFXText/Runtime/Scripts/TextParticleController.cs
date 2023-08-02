@@ -69,15 +69,13 @@ namespace VFXText
             _eventAttribute.SetFloat("spawnCount", wordLength);
             _eventAttribute.SetInt(TextBufferStartPosition, _targetBufferPosition);
 
+            _eventAttribute.SetVector3(Position, screenPosition);
+            _eventAttribute.SetFloat(Size, scale);
             if (customEventAttribute != null)
             {
                 customEventAttribute(_eventAttribute);
             }
-            else
-            {
-                _eventAttribute.SetVector3(Position, screenPosition);
-                _eventAttribute.SetFloat(Size, scale);
-            }
+            
             _vfx.SendEvent(ShowText, _eventAttribute);
             _targetBufferPosition += wordLength;
         }
