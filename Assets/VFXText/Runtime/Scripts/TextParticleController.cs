@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.VFX;
 
@@ -7,7 +8,7 @@ namespace VFXText
     {
         private static readonly int
             TextBufferStride =
-                sizeof(float) * 2 + sizeof(int) + sizeof(float); // 2float - position 1int-GlyphId + 1float-Scale
+                sizeof(float) * 2 + sizeof(int); // 2float - position 1int-GlyphId + 1float-Scale
 
         private static readonly int TextBufferSize = 100000; // 100k glyphs 
 
@@ -16,6 +17,8 @@ namespace VFXText
 
         private static readonly int FontBuffer = Shader.PropertyToID(nameof(FontBuffer));
         private static readonly int ShowText = Shader.PropertyToID(nameof(ShowText));
+        private static readonly int Position = Shader.PropertyToID("position");
+        private static readonly int Size = Shader.PropertyToID("size");
         private static readonly int TextBufferStartPosition = Shader.PropertyToID(nameof(TextBufferStartPosition));
         [SerializeField] private Font fontAsset;
         [SerializeField] private float DefaultScale = 0.1f;
@@ -52,25 +55,33 @@ namespace VFXText
         }
 
 
-        public void SpawnWord(Vector2 screenPosition, string word, float scale, Pivot pivot)
+        public void SpawnWord(Vector2 screenPosition, string word, float scale, Pivot pivot, Action<VFXEventAttribute> customEventAttribute = null)
         {
             var wordLength = word.Length;
             if (_targetBufferPosition + wordLength >= TextBufferSize)
             {
                 _targetBufferPosition = 0;
-                Debug.Log("Reset Buffer");
             }
 
-            var array = GetGlyphArray(screenPosition, word, scale, pivot);
+            var array = GetGlyphArray(word, pivot);
             _textBuffer.SetData(array, 0, _targetBufferPosition, wordLength);
-
-            _eventAttribute.SetInt(TextBufferStartPosition, _targetBufferPosition);
             _eventAttribute.SetFloat("spawnCount", wordLength);
+            _eventAttribute.SetInt(TextBufferStartPosition, _targetBufferPosition);
+
+            if (customEventAttribute != null)
+            {
+                customEventAttribute(_eventAttribute);
+            }
+            else
+            {
+                _eventAttribute.SetVector3(Position, screenPosition);
+                _eventAttribute.SetFloat(Size, scale);
+            }
             _vfx.SendEvent(ShowText, _eventAttribute);
             _targetBufferPosition += wordLength;
         }
 
-        private GlyphBufferInfo[] GetGlyphArray(Vector2 centerPosition, string str, float scale, Pivot pivot)
+        private GlyphBufferInfo[] GetGlyphArray(string str, Pivot pivot)
         {
             var result = new GlyphBufferInfo[str.Length];
             var totalWidth = 0f;
@@ -85,18 +96,16 @@ namespace VFXText
                     result[i] = new GlyphBufferInfo
                     {
                         GlyphId = _fontAdapter.GetGlyphId(c),
-                        Offset = centerPosition + position + characterInfo.vert.center * scale,
-                        Size = scale
+                        Offset = position + characterInfo.vert.center
                     };
-                    var advance = characterInfo.advance * scale;
+                    var advance = characterInfo.advance;
                     position.x += advance;
                     totalWidth += advance;
                 }
-
                 i++;
             }
 
-            var height = fontAsset.lineHeight * scale;
+            var height = fontAsset.fontSize;
 
             var (offsetX, offsetY) = pivot.GetOffset(totalWidth, height);
             for (var j = 0; j < result.Length; j++)

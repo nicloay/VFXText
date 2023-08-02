@@ -8,6 +8,5 @@ namespace VFXText
     {
         public Vector2 Offset;
         public int GlyphId;
-        public float Size;
     }
 }
