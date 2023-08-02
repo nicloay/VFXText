@@ -47,6 +47,7 @@ namespace VFXText
         {
             _fontAdapter?.Dispose();
             _textBuffer?.Dispose();
+            _eventAttribute?.Dispose();
         }
 
         public void SpawnWord(Vector3 screenPosition, string word, Pivot pivot = Pivot.Bottom)
