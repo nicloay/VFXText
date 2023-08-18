@@ -9,5 +9,10 @@ namespace VFXText.Demo.NPCDemo
         {
             transform.RotateAround(Vector3.zero, Vector3.up, Time.deltaTime * speed);
         }
+
+        public void SetSpeed(float newSpeed)
+        {
+            speed = newSpeed;
+        }
     }
 }

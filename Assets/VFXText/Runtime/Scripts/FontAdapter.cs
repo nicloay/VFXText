@@ -28,6 +28,7 @@ namespace VFXText
         public void Dispose()
         {
             _lookupBuffers.Dispose();
+            Buffer.Dispose();
         }
 
         public int GetGlyphId(char c)

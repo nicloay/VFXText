@@ -10,12 +10,18 @@ namespace VFXText
         public Vector2 BottomLeft;
         public Vector2 BottomRight;
         public Vector2 TopLeft;
-
-
+        
         public static FontLookupBuffer FromCharacterInfo(CharacterInfo characterInfo)
         {
+            return new FontLookupBuffer
+            {
+                ScaleXY = new Vector2(characterInfo.vert.width, characterInfo.vert.height),
+                BottomLeft = characterInfo.uvBottomLeft,
+                BottomRight = characterInfo.uvBottomRight,
+                TopLeft = characterInfo.uvTopLeft
+            };
+            
             var uv = characterInfo.uv;
-
             if (characterInfo.flipped)
                 return new FontLookupBuffer
                 {

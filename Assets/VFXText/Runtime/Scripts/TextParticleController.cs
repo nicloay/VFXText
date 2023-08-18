@@ -13,7 +13,7 @@ namespace VFXText
         private static readonly int TextBufferSize = 100000; // 100k glyphs 
 
         private static readonly int TextBuffer = Shader.PropertyToID(nameof(TextBuffer));
-        private static readonly int TextBufferSizeName = Shader.PropertyToID(nameof(TextBufferSize));
+        
 
         private static readonly int FontBuffer = Shader.PropertyToID(nameof(FontBuffer));
         private static readonly int ShowText = Shader.PropertyToID(nameof(ShowText));
@@ -29,8 +29,12 @@ namespace VFXText
 
         private VisualEffect _vfx;
 
-        private void Awake()
+        private bool _isInitialized = false;
+
+        private void Initialize()
         {
+            if (_isInitialized) return;
+            _isInitialized = true;
             _vfx = GetComponent<VisualEffect>();
             // init font buffer with all glyphs info (Uv, size, etc..)
             _fontAdapter = new FontAdapter(fontAsset);
@@ -38,9 +42,14 @@ namespace VFXText
             // init words buffer
             _textBuffer = new GraphicsBuffer(GraphicsBuffer.Target.Structured, TextBufferSize, TextBufferStride);
             _vfx.SetGraphicsBuffer(TextBuffer, _textBuffer);
-            _vfx.SetInt(TextBufferSizeName, TextBufferSize);
+            
 
             _eventAttribute = _vfx.CreateVFXEventAttribute();
+        }
+        
+        private void Awake()
+        {
+            Initialize();
         }
 
         private void OnDestroy()
@@ -58,6 +67,7 @@ namespace VFXText
 
         public void SpawnWord(Vector3 screenPosition, string word, float scale, Pivot pivot, Action<VFXEventAttribute> customEventAttribute = null)
         {
+            Initialize();
             var wordLength = word.Length;
             if (_targetBufferPosition + wordLength >= TextBufferSize)
             {
