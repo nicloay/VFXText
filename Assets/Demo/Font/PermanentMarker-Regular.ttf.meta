@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: e8a89bf894f26ea46b45a8e53a49967e
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 56
+  forceTextureCase: 0
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Permanent Marker
+  fallbackFontReferences: []
+  customCharacters: tes
+  fontRenderingMode: 1
+  ascentCalculationMode: 0
+  useLegacyBoundsCalculation: 1
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

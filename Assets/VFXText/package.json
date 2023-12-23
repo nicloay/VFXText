@@ -1,0 +1,22 @@
+﻿{
+  "name": "com.nicloay.vfxtext",
+  "version": "0.9.5",
+  "displayName": "VFX Text",
+  "description": "VFX Text Particles",
+  "unity": "2022.2",
+  "unityRelease": "0f1",
+  "documentationUrl": "https://github.com/nicloay/VFXText",
+  "dependencies": {
+    "com.unity.visualeffectgraph": "14.0.8"
+  },
+  "keywords": [
+    "VFX"
+  ],
+  "samples": [
+    {
+      "displayName": "Demo scene",
+      "description": "VFX Text Particles on the Orthographic camera",
+      "path": "Samples~/Demo"
+    }
+  ]
+}
